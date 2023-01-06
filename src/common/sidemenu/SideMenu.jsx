@@ -75,7 +75,7 @@ function SideMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_TOP_REQUEST" });
-        const { data } = await axios.get(`${request}/api/posts/topDownloads`);
+        const { data } = await axios.get(`${request}/api/posts/top-downloads`);
         dispatch({ type: "FETCH_TOP_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_TOP_FAIL" });
