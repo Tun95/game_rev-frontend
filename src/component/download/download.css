@@ -1,0 +1,44 @@
+.download {
+  padding: 5px;
+  min-height: 800px;
+}
+.download .download_box {
+  margin-top: 10px;
+}
+.download .dark_theme {
+  color: var(--color-dark);
+}
+.download .top_section_cont {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.download .top_section_cont h2 {
+  font-weight: 400;
+}
+.download .ads_link a {
+  color: blue;
+  text-decoration: underline;
+  font-weight: 800;
+}
+.download .red_counter {
+  color: var(--color-red);
+}
+.download img {
+  cursor: pointer;
+}
+
+.download .section_content {
+  width: 80%;
+  line-height: 30px;
+}
+.download .down_link_btn {
+  margin-bottom: 20px;
+}
+.download .down_link_btn img {
+  width: 400px;
+}
+.download .section_content .ads_link {
+  font-weight: 600;
+}

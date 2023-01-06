@@ -1,0 +1,29 @@
+.more {
+  margin-top: 40px;
+}
+.more h5 {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+}
+.more h5 span {
+  color: var(--color-light);
+}
+.more .more_ctn {
+  max-width: 200px;
+}
+.more .more_small {
+  width: 180px;
+  height: 110px;
+}
+.more .more_name_style a {
+  color: var(--color-ash);
+}
+.more .more_comment {
+  font-size: 12px;
+  margin: 2px 0px;
+  color: var(--color-dark);
+}
+.more .more_desc {
+  margin-top: 2px;
+}

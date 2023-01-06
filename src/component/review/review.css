@@ -1,0 +1,53 @@
+.review .download_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.review .download_btn a {
+  text-decoration: underline;
+  font-weight: 600;
+  color: blue;
+}
+
+.review .download_btn img {
+  width: 250px;
+  cursor: pointer;
+}
+.review .review_content {
+  border: 2px solid var(--color-ash);
+  padding: 10px;
+  background-color: var(--color-white);
+}
+.review .related_post {
+  margin-top: 40px;
+
+  overflow: hidden;
+}
+.review .display_flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.review .related_content {
+  margin: 10px;
+  -webkit-box-shadow: 0px 0px 7px -1px #6c6c6c;
+  box-shadow: 0px 0px 7px -1px #6c6c6c;
+  text-align: center;
+  max-width: 180px;
+  padding: 10px;
+}
+.review .related_post .small {
+  width: 150px;
+  height: 150px;
+  position: relative;
+}
+
+.review .related_display {
+  display: flex;
+  flex-direction: column;
+}
+.review .related_post .related_name {
+  font-size: 15px;
+  color: var(--color-primary);
+}
