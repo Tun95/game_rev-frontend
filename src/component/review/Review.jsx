@@ -10,6 +10,7 @@ import MessageBox from "../../utils/loading message/MessageBox";
 import Comment from "../comment/Comment";
 import { Helmet } from "react-helmet-async";
 import AdSense from "react-adsense";
+import { request } from "../../base_url/Base_URL";
 
 // ads with no set-up
 
@@ -59,7 +60,7 @@ function Review() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/posts/${postId}`);
+        const { data } = await axios.get(`${request}/api/posts/${postId}`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL" });
@@ -76,7 +77,9 @@ function Review() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_RELATED_REQUEST" });
-        const { data } = await axios.get(`/api/posts/related/${postId}`);
+        const { data } = await axios.get(
+          `${request}/api/posts/related/${postId}`
+        );
         dispatch({ type: "FETCH_RELATED_SUCCESS", payload: data });
       } catch (err) {
         dispatch({ type: "FETCH_RELATED_FAIL" });
@@ -92,7 +95,7 @@ function Review() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_BANNER_REQUEST" });
-        const { data } = await axios.get("/api/ads");
+        const { data } = await axios.get(`${request}/api/ads`);
         dispatch({ type: "FETCH_BANNER_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_BANNER_FAIL" });

@@ -3,6 +3,7 @@ import "./more.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactTimeAgo from "react-time-ago";
+import { request } from "../../base_url/Base_URL";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,7 +32,7 @@ function More() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get("/api/posts");
+        const { data } = await axios.get(`${request}/api/posts`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
         window.scroll(0, 0);
       } catch (error) {
