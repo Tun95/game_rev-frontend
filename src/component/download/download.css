@@ -42,3 +42,9 @@
 .download .section_content .ads_link {
   font-weight: 600;
 }
+/*======= MEDIA QUERIES (SMALL DEVICES) =======*/
+@media screen and (max-width: 560px) {
+  .download .down_link_btn img {
+    width: 90%;
+  }
+}
