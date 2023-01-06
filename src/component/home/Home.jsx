@@ -9,6 +9,8 @@ import LoadingBox from "../../utils/loading message/LoadingBox";
 import MessageBox from "../../utils/loading message/MessageBox";
 import { getError } from "../../utils/Utils";
 import ReactTimeAgo from "react-time-ago";
+import { request } from "../../base_url/Base_URL";
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -56,7 +58,7 @@ function Home() {
     const fetchData = async () => {
       try {
         const result = await axios.get(
-          `/api/posts/home?page=${page}&query=${query}&category=${category}`
+          `${request}/api/posts/home?page=${page}&query=${query}&category=${category}`
         );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
         window.scrollTo(0, 0);
