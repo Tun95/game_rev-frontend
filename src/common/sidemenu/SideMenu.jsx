@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { getError } from "../../utils/Utils";
+import { request } from "../../base_url/Base_URL";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -57,7 +58,7 @@ function SideMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get("/api/settings");
+        const { data } = await axios.get(`${request}/api/settings`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL" });
@@ -74,7 +75,7 @@ function SideMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_TOP_REQUEST" });
-        const { data } = await axios.get("/api/posts/top-downloads");
+        const { data } = await axios.get(`${request}/api/posts/top-downloads"`);
         dispatch({ type: "FETCH_TOP_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_TOP_FAIL" });
@@ -91,7 +92,7 @@ function SideMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_BANNER_REQUEST" });
-        const { data } = await axios.get("/api/ads");
+        const { data } = await axios.get(`${request}/api/ads`);
         dispatch({ type: "FETCH_BANNER_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_BANNER_FAIL" });
@@ -119,7 +120,7 @@ function SideMenu() {
   const subscribeHandler = async (e, action) => {
     e.preventDefault(e);
     try {
-      const { data } = await axios.post("/api/subscribe", {
+      const { data } = await axios.post(`${request}/api/subscribe`, {
         email,
       });
       dispatch({ type: "POST_SUCCESS", payload: data });

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { request } from "../../base_url/Base_URL";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -40,7 +41,7 @@ function NavMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get("/api/settings");
+        const { data } = await axios.get(`${request}/api/settings`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL" });
@@ -57,7 +58,7 @@ function NavMenu() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_CATEGORY_REQUEST" });
-        const { data } = await axios.get("/api/category/alphatical");
+        const { data } = await axios.get(`${request}/api/category/alphatical`);
         dispatch({ type: "FETCH_CATEGORY_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_CATEGORY_FAIL" });
