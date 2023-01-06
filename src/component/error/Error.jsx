@@ -47,18 +47,19 @@ function Error() {
   return (
     <div className="acpd">
       {loading ? (
-          <LoadingBox></LoadingBox>
-        ) : error ? (
-          <MessageBox>{error}</MessageBox>
-        ) : (
-      <div className="acpd_box">
-        {settings.map((s, index) => (
-          <div key={index} className="acpd_content">
-            {" "}
-            {parse(`<p>${s?.gameErr}</p>`)}
-          </div>
-        ))}
-      </div>)}
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox>{error}</MessageBox>
+      ) : (
+        <div className="acpd_box">
+          {settings.map((s, index) => (
+            <div key={index} className="acpd_content">
+              {" "}
+              {parse(`<p>${s?.gameErr}</p>`)}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
