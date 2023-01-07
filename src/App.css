@@ -33,7 +33,7 @@ html {
 }
 body {
   font-family: sans-serif;
-  background-image: url(../src/assets/banner.jpg);
+  /* background-image: url(../src/assets/banner.jpg); */
   background-attachment: fixed;
 }
 .header-container {

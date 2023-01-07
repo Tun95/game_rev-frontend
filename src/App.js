@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useReducer } from "react";
 import TimeAgo from "javascript-time-ago";
+import {request} from "./base_url/Base_URL"
 
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
@@ -49,7 +50,7 @@ function App() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get("/api/settings");
+        const { data } = await axios.get(`${request}/api/settings`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL" });
@@ -63,22 +64,31 @@ function App() {
     <>
       <Router>
         <ToastContainer />
-        <div className="App s_flex">
-          <Routes>
-            <Route path="/" element={<HomeScreen />}></Route>
-            <Route path="/:id/details" element={<ReviewScreen />}></Route>
-            <Route path="/:id/download" element={<DownloadScreen />}></Route>
-            <Route path="/about" element={<AboutScreen />}></Route>
-            <Route path="/contact" element={<ContactScreen />}></Route>
-            <Route path="/request" element={<RequestScreen />}></Route>
-            <Route path="/disclaimer" element={<DisclaimerScreen />}></Route>
-            <Route path="/privacy-policy" element={<PrivacyScreen />}></Route>
-            <Route
-              path="/fix-general-installation-errors"
-              element={<GameErrorScreen />}
-            ></Route>
-          </Routes>
-        </div>
+        {settings.map((b, index) => (
+          <div
+            className="App s_flex"
+            key={index}
+            style={{
+              backgroundImage: `url(${b.background})`,
+              backgroundAttachment: "fixed",
+            }}
+          >
+            <Routes>
+              <Route path="/" element={<HomeScreen />}></Route>
+              <Route path="/:id/details" element={<ReviewScreen />}></Route>
+              <Route path="/:id/download" element={<DownloadScreen />}></Route>
+              <Route path="/about" element={<AboutScreen />}></Route>
+              <Route path="/contact" element={<ContactScreen />}></Route>
+              <Route path="/request" element={<RequestScreen />}></Route>
+              <Route path="/disclaimer" element={<DisclaimerScreen />}></Route>
+              <Route path="/privacy-policy" element={<PrivacyScreen />}></Route>
+              <Route
+                path="/fix-general-installation-errors"
+                element={<GameErrorScreen />}
+              ></Route>
+            </Routes>
+          </div>
+        ))}
       </Router>
     </>
   );
