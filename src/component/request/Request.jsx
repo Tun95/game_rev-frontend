@@ -37,6 +37,7 @@ function Request() {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`${request}/api/settings`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
+      window.scroll(0, 0);
       } catch (error) {
         dispatch({ type: "FETCH_FAIL" });
       }

@@ -50,6 +50,7 @@ function Download() {
           `${request}/api/posts/download/${postId}`
         );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
+        window.scrollTo(0, 0);
       } catch (err) {
         dispatch({ type: "FETCH_FAIL" });
       }
@@ -134,8 +135,6 @@ function Download() {
                   <br />
 
                   <Countdown date={Date.now() + 10000} renderer={renderer} />
-
-                  
                 </div>
               </div>
               <div className="down_section_cont">
