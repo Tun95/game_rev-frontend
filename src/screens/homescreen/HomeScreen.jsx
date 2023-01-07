@@ -5,22 +5,10 @@ import NavMenu from "../../common/navmenu/NavMenu";
 import SideMenu from "../../common/sidemenu/SideMenu";
 import Home from "../../component/home/Home";
 import "./homescreen.css";
-import ReactGA from "react-ga";
 
-ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
-  debug: true,
-  titleCase: false,
-  gaOptions: {
-    userId: 123,
-  },
-});
+
 
 function HomeScreen() {
-  //TRACKING
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  });
-
   return (
     <>
       <Helmet>

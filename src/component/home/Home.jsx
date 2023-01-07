@@ -10,7 +10,15 @@ import MessageBox from "../../utils/loading message/MessageBox";
 import { getError } from "../../utils/Utils";
 import ReactTimeAgo from "react-time-ago";
 import { request } from "../../base_url/Base_URL";
+import ReactGA from "react-ga";
 
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    userId: 123,
+  },
+});
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -33,6 +41,11 @@ const reducer = (state, action) => {
   }
 };
 function Home() {
+  //TRACKING
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
+
   const [{ loading, error, posts, pages, countPosts }, dispatch] = useReducer(
     reducer,
     {
@@ -70,6 +83,14 @@ function Home() {
   }, [category, page, query]);
   console.log(posts);
 
+  const onPageView = (post) => {
+    ReactGA.event({
+      category: post.title,
+      action: "test action",
+      label: "test label",
+    });
+  };
+
   return (
     <div className="home">
       {loading ? (
@@ -87,14 +108,16 @@ function Home() {
             {posts?.posts?.map((post, index) => (
               <article className="home_content d_flex" key={index}>
                 <div className="img">
-                  <Link to={`/${post.id}/details`}>
+                  <Link to={`/${post.id}/details`} onClick={onPageView}>
                     <img src={post.image || photo} alt="" className="small" />
                   </Link>
                 </div>
                 <div className="content">
                   <h2 className="content_header">
                     {" "}
-                    <Link to={`/${post.id}/details`}>{post.title}</Link>
+                    <Link to={`/${post.id}/details`} onClick={onPageView}>
+                      {post.title}
+                    </Link>
                   </h2>
                   <div className="post_date_category">
                     <span className="d_flex btn_post">
@@ -109,7 +132,7 @@ function Home() {
                         <strong>
                           {post.category?.slice(0, 3)?.map((c, index) => (
                             <ul key={index} className="n_flex">
-                              <li>
+                              <li onClick={onPageView}>
                                 <Link to={`/?category=${c}`}>{c},</Link>
                               </li>
                             </ul>
