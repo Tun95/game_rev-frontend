@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import ReactDOM from "react-dom";
+import { Helmet } from "react-helmet";
 import Countdown from "react-countdown";
 import "./download.css";
 import parse from "html-react-parser";
@@ -119,6 +119,18 @@ function Download() {
             <MessageBox>{error}</MessageBox>
           ) : (
             <>
+              <Helmet>
+                <meta charSet="utf-8" />
+                <script type="text/javascript">var lck = false;</script>
+                <script
+                  type="text/javascript"
+                  src="https://trianglerockers.com/script_include.php?id=1311065"
+                ></script>
+                <script type="text/javascript">
+                  {"https://trianglerockers.com/help/ablk.php?lkt=1"}
+                </script>
+                <link rel="canonical" href="http://mysite.com/example" />
+              </Helmet>
               <div className="top_section_cont">
                 <div className="section_content">
                   <div className="info">
