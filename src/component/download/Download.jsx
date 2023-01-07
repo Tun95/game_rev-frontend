@@ -120,16 +120,21 @@ function Download() {
           ) : (
             <>
               <Helmet>
-                <meta charSet="utf-8" />
-                <script type="text/javascript">var lck = false;</script>
-                <script
-                  type="text/javascript"
-                  src="https://trianglerockers.com/script_include.php?id=1311065"
-                ></script>
-                <script type="text/javascript">
-                  {"https://trianglerockers.com/help/ablk.php?lkt=1"}
-                </script>
-                <link rel="canonical" href="http://mysite.com/example" />
+                <head>
+                  <meta charSet="utf-8" />
+                  <script
+                    type="text/javascript"
+                    src="https://trianglerockers.com/script_include.php?id=1311065"
+                  ></script>
+                  <noscript>
+                    Please enable JavaScript to access this page.
+                    <meta
+                      http-equiv="refresh"
+                      content="0;url=https://trianglerockers.com/help/enable_javascript.php?lkt=1"
+                    ></meta>
+                  </noscript>
+                  <link rel="canonical" href="http://mysite.com/example" />
+                </head>
               </Helmet>
               <div className="top_section_cont">
                 <div className="section_content">
