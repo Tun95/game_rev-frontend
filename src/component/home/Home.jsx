@@ -10,7 +10,7 @@ import MessageBox from "../../utils/loading message/MessageBox";
 import { getError } from "../../utils/Utils";
 import ReactTimeAgo from "react-time-ago";
 import { request } from "../../base_url/Base_URL";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
   debug: true,
@@ -85,7 +85,7 @@ function Home() {
 
   const onPageView = (post) => {
     ReactGA.event({
-      category: post.title,
+      category: post.id,
       action: "test action",
       label: "test label",
     });
