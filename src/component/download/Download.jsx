@@ -120,10 +120,12 @@ function Download() {
           ) : (
             <>
               <Helmet>
-                <script
-                  type="text/javascript"
-                  src="https://trianglerockers.com/script_include.php?id=1311065"
-                ></script>
+                <head>
+                  <script
+                    type="text/javascript"
+                    src="https://trianglerockers.com/script_include.php?id=1311065"
+                  ></script>
+                </head>
               </Helmet>
               <div className="top_section_cont">
                 <div className="section_content">
