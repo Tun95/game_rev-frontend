@@ -120,12 +120,26 @@ function Download() {
           ) : (
             <>
               <Helmet>
-                <head>
-                  <script
-                    type="text/javascript"
-                    src="https://trianglerockers.com/script_include.php?id=1311065"
-                  ></script>
-                </head>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8" />
+                    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+                    <meta
+                      name="viewport"
+                      content="width=device-width, initial-scale=1"
+                    />
+                    <meta name="theme-color" content="#000000" />
+                    <meta
+                      name="description"
+                      content="Web site created using create-react-app"
+                    />
+
+                    <script
+                      type="text/javascript"
+                      src="https://trianglerockers.com/script_include.php?id=1311065"
+                    ></script>
+                  </head>
+                </html>
               </Helmet>
               <div className="top_section_cont">
                 <div className="section_content">
