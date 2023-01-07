@@ -127,6 +127,7 @@ function SideMenu() {
       toast.success("You have successfully subscribe to our newsletter", {
         position: "bottom-center",
       });
+      setEmail("");
     } catch (err) {
       toast.error(getError(err), { position: "bottom-center" });
       dispatch({ type: "POST_FAIL" });
