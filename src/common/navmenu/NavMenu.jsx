@@ -76,8 +76,8 @@ function NavMenu() {
         <div className="nav_bar">
           <div className="logo">
             {settings.map((s, index) => (
-              <Link to="/">
-                <img src={s.logo} key={index} alt="" />
+              <Link to="/" key={index}>
+                <img src={s.logo} alt="" />
               </Link>
             ))}
           </div>

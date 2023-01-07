@@ -155,204 +155,227 @@ function SideMenu() {
               GO
             </span>
           </form>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Advertisment</h3>
-            </div>
-            <span className="content content_image">
-              {adverts?.map((ads, index) => (
-                <a
-                  key={index}
-                  href={`${ads.bannerLinkOne}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={ads.bannerOne}
-                    alt="advertisment"
-                    className="content_img"
-                  />
-                </a>
-              ))}
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Top Downloaded Games</h3>
-            </div>
-            <span className="content content_image">
-              <div className="display_grid">
-                {downloads?.map((download, index) => (
-                  <Link to={`/${download.id}/details`} key={index}>
-                    {" "}
-                    <img
-                      src={download.banner}
-                      alt="advertisment"
-                      className="content_img"
-                    />
-                  </Link>
-                ))}{" "}
+
+          <>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideOne}</h3>
+                ))}
               </div>
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Copyright &amp; dmca protected</h3>
-            </div>
-            <span className="content content_image">
-              {settings.map((s, index) => (
-                <div className="d_flex" key={index}>
+              <span className="content content_image">
+                {adverts?.map((ads, index) => (
                   <a
-                    href={s.copyRight}
+                    key={index}
+                    href={`${ads.bannerLinkOne}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {" "}
-                    <img src={copy} alt="copyright" className="content_img" />
+                    <img
+                      src={ads.bannerOne}
+                      alt="advertisment"
+                      className="content_img"
+                    />
                   </a>
-                  <a href={s.dmca} target="_blank" rel="noopener noreferrer">
-                    {" "}
-                    <img src={dmca} alt="copyright" className="content_img" />
-                  </a>
+                ))}
+              </span>
+            </div>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideTwo}</h3>
+                ))}
+              </div>
+              <span className="content content_image">
+                <div className="display_grid">
+                  {downloads?.map((download, index) => (
+                    <Link to={`/${download.id}/details`} key={index}>
+                      {" "}
+                      <img
+                        src={download.banner}
+                        alt="advertisment"
+                        className="content_img"
+                      />
+                    </Link>
+                  ))}{" "}
                 </div>
-              ))}
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>How to fix game errors</h3>
+              </span>
             </div>
-            <span className="content">
-              <Link
-                to="/fix-general-installation-errors"
-                className="content_link"
-              >
-                {" "}
-                <h3 className="content_fix">
-                  Game Corruption Errors &amp; Fix
-                </h3>
-              </Link>
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Advertisment</h3>
-            </div>
-            <span className="content content_image">
-              {adverts?.map((ads, index) => (
-                <div key={index}>
-                  <a
-                    href={`${ads.bannerLinkTwo}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={ads.bannerTwo}
-                      alt="advertisment"
-                      className="content_img"
-                    />
-                  </a>
-                  <a
-                    href={`${ads.bannerLinkThree}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={ads.bannerThree}
-                      alt="advertisment"
-                      className="content_img"
-                    />
-                  </a>{" "}
-                  <a
-                    href={`${ads.bannerLinkFour}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={ads.bannerFour}
-                      alt="advertisment"
-                      className="content_img"
-                    />
-                  </a>{" "}
-                  <a
-                    href={`${ads.bannerLinkFive}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={ads.bannerFive}
-                      alt="advertisment"
-                      className="content_img"
-                    />
-                  </a>
-                </div>
-              ))}
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Follow us on</h3>
-            </div>
-            <span className="content">
-              {settings.map((s, index) => (
-                <ul key={index}>
-                  <li>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideThree}</h3>
+                ))}
+              </div>
+              <span className="content content_image">
+                {settings.map((s, index) => (
+                  <div className="d_flex" key={index}>
                     <a
-                      href={s.facebook}
+                      href={s.copyRight}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <i className="fa-brands fa-facebook"></i>
+                      {" "}
+                      <img src={copy} alt="copyright" className="content_img" />
                     </a>
-                  </li>
-                  <li>
+                    <a href={s.dmca} target="_blank" rel="noopener noreferrer">
+                      {" "}
+                      <img src={dmca} alt="copyright" className="content_img" />
+                    </a>
+                  </div>
+                ))}
+              </span>
+            </div>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideFour}</h3>
+                ))}
+              </div>
+              <span className="content">
+                <Link
+                  to="/fix-general-installation-errors"
+                  className="content_link"
+                >
+                  {" "}
+                  <h3 className="content_fix">
+                    Game Corruption Errors &amp; Fix
+                  </h3>
+                </Link>
+              </span>
+            </div>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideFive}</h3>
+                ))}
+              </div>
+              <span className="content content_image">
+                {adverts?.map((ads, index) => (
+                  <div key={index}>
                     <a
-                      href={s.twitter}
+                      href={`${ads.bannerLinkTwo}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <i className="fa-brands fa-twitter"></i>
+                      <img
+                        src={ads.bannerTwo}
+                        alt="advertisment"
+                        className="content_img"
+                      />
                     </a>
-                  </li>
-                  <li>
                     <a
-                      href={s.instagram}
+                      href={`${ads.bannerLinkThree}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <i className="fa-brands fa-instagram"></i>
+                      <img
+                        src={ads.bannerThree}
+                        alt="advertisment"
+                        className="content_img"
+                      />
+                    </a>{" "}
+                    <a
+                      href={`${ads.bannerLinkFour}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={ads.bannerFour}
+                        alt="advertisment"
+                        className="content_img"
+                      />
+                    </a>{" "}
+                    <a
+                      href={`${ads.bannerLinkFive}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={ads.bannerFive}
+                        alt="advertisment"
+                        className="content_img"
+                      />
                     </a>
-                  </li>
-                </ul>
-              ))}
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Request game section</h3>
+                  </div>
+                ))}
+              </span>
             </div>
-            <span className="content">
-              <Link to="/request">
-                <button className="btn_request">Request Section</button>
-              </Link>
-            </span>
-          </div>
-          <div className="content_box">
-            <div className="content_header d_flex">
-              <h3>Never miss a game</h3>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideSix}</h3>
+                ))}
+              </div>
+              <span className="content">
+                {settings.map((s, index) => (
+                  <ul key={index}>
+                    <li>
+                      <a
+                        href={s.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fa-brands fa-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={s.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fa-brands fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={s.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <i className="fa-brands fa-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                ))}
+              </span>
             </div>
-            <span className="content  content_image">
-              <form action="" onSubmit={subscribeHandler} className="lower_sub">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
-                />
-                <button className="btn_sub">Subscribe</button>
-              </form>
-            </span>
-          </div>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideSeven}</h3>
+                ))}
+              </div>
+              <span className="content">
+                <Link to="/request">
+                  <button className="btn_request">Request Section</button>
+                </Link>
+              </span>
+            </div>
+            <div className="content_box">
+              <div className="content_header d_flex">
+                {settings.map((s, index) => (
+                  <h3 key={index}>{s.sideEight}</h3>
+                ))}
+              </div>
+              <span className="content  content_image">
+                <form
+                  action=""
+                  onSubmit={subscribeHandler}
+                  className="lower_sub"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                  />
+                  <button className="btn_sub">Subscribe</button>
+                </form>
+              </span>
+            </div>
+          </>
         </div>
       </div>
     </div>
