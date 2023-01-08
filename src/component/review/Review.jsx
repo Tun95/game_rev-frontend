@@ -109,7 +109,7 @@ function Review() {
               <span>
                 {adverts?.map((ads, index) => (
                   <span>
-                    {ads.ppcOne === "" ? (
+                    {!ads.ppcOne ? (
                       ""
                     ) : (
                       <a
@@ -125,7 +125,7 @@ function Review() {
                 ))}
                 <br />
                 <br />
-                {post.downloadLink === "" ? (
+                {!post.downloadLink ? (
                   ""
                 ) : (
                   <Link to={`/${postId}/download`}>
@@ -137,6 +137,25 @@ function Review() {
                       />
                     ))}
                   </Link>
+                )}
+                <br />
+                {!post.buyLink ? (
+                  ""
+                ) : (
+                  <a
+                    href={post.buyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {settings?.map((s, index) => (
+                      <img
+                        src={s.buyBtn}
+                        alt="download button"
+                        key={index}
+                        className="buy"
+                      />
+                    ))}
+                  </a>
                 )}
               </span>
             </div>

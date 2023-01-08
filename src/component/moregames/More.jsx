@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import "./more.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactTimeAgo from "react-time-ago";
 import { request } from "../../base_url/Base_URL";
+import { Context } from "../../context/Context";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,6 +26,11 @@ function More() {
     error: "",
     posts: [],
   });
+
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings } = state;
+  window.scroll(0, 0);
+
   //==============
   //FETCH HANDLER
   //==============
@@ -47,7 +53,12 @@ function More() {
       <div className="more_box">
         <div className="more_content">
           <h5>
-            <span>Also on </span> Games Reviews
+            {settings?.map((s, index) => (
+              <p key={index}>
+                <span>Also on </span>
+                {s.webName}
+              </p>
+            ))}
           </h5>
 
           <div className="content">

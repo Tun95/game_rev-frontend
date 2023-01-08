@@ -14,6 +14,11 @@
   width: 250px;
   cursor: pointer;
 }
+.review .download_btn a .buy {
+  width: 150px;
+  cursor: pointer;
+  margin-top: 5px;
+}
 .review .review_content {
   border: 2px solid var(--color-ash);
   padding: 10px;
