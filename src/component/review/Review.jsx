@@ -9,7 +9,7 @@ import LoadingBox from "../../utils/loading message/LoadingBox";
 import MessageBox from "../../utils/loading message/MessageBox";
 import Comment from "../comment/Comment";
 import { Helmet } from "react-helmet-async";
-import AdSense from "react-adsense";
+import { Adsense } from "@ctrl/react-adsense";
 import { request } from "../../base_url/Base_URL";
 import ReactGA from "react-ga4";
 
@@ -172,9 +172,9 @@ function Review() {
           </div>
           <div className="review_more">
             <More />
-            <AdSense.Google
-              client="ca-pub-7292810486004926"
-              slot="7806394673"
+            <Adsense
+              client="ca-pub-4626968536803317"
+              slot="6639897134"
             />
 
             {/* <Adsense client="ca-pub-7640562161899788" slot="7259870550" /> */}
