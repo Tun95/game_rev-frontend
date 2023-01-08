@@ -183,10 +183,11 @@ function Review() {
           </div>
           <div className="review_more">
             <More />
-            <AdSense.Google
-              client="ca-pub-4626968536803317"
-              slot="6639897134"
-            />
+            {adverts.map((a, index) => (
+              <span key={index}>
+                <AdSense.Google client={a.clientId} slot={a.slot} />
+              </span>
+            ))}
             <Comment postId={postId} post={post} />
           </div>
         </div>

@@ -7,7 +7,7 @@ import { Context } from "../../context/Context";
 
 function Privacy() {
   const { state, dispatch: ctxDispatch } = useContext(Context);
-  const { loading, error, settings } = state;
+  const { loading, error,adverts, settings } = state;
   window.scroll(0, 0);
 
   return (
@@ -27,7 +27,11 @@ function Privacy() {
         </div>
       )}
       <div>
-        <AdSense.Google client="ca-pub-4626968536803317" slot="6639897134" />
+        {adverts.map((a, index) => (
+          <span key={index}>
+            <AdSense.Google client={a.clientId} slot={a.slot} />
+          </span>
+        ))}
       </div>
     </div>
   );
