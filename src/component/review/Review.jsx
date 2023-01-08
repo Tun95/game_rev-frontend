@@ -11,8 +11,7 @@ import Comment from "../comment/Comment";
 import { Helmet } from "react-helmet-async";
 import AdSense from "react-adsense";
 import { request } from "../../base_url/Base_URL";
-
-// ads with no set-up
+import ReactGA from "react-ga4";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,6 +42,10 @@ const reducer = (state, action) => {
 };
 
 function Review() {
+  //TRACKING
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
   const params = useParams();
   const { id: postId } = params;
 
@@ -63,6 +66,11 @@ function Review() {
         const { data } = await axios.get(`${request}/api/posts/${postId}`);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
         window.scroll(0, 0);
+        ReactGA.event({
+          category: postId,
+          action: "test action",
+          label: "test label",
+        });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL" });
       }

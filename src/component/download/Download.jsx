@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import LoadingBox from "../../utils/loading message/LoadingBox";
 import MessageBox from "../../utils/loading message/MessageBox";
 import { request } from "../../base_url/Base_URL";
+import ReactGA from "react-ga4";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,7 +32,19 @@ const reducer = (state, action) => {
   }
 };
 
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    userId: 123,
+  },
+});
 function Download() {
+  //TRACKING
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
+
   const params = useParams();
   const { id: postId } = params;
 
@@ -51,6 +64,11 @@ function Download() {
         );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
         window.scrollTo(0, 0);
+        ReactGA.event({
+          category: postId,
+          action: "test action",
+          label: "test label",
+        });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL" });
       }
@@ -130,14 +148,10 @@ function Download() {
           ) : (
             <>
               <Helmet>
-                <html lang="en">
-                  <head>
-                    <script
-                      type="text/javascript"
-                      src="https://trianglerockers.com/script_include.php?id=1311065"
-                    ></script>
-                  </head>
-                </html>
+                <script
+                  type="text/javascript"
+                  src="https://trianglerockers.com/script_include.php?id=1311065"
+                ></script>
               </Helmet>
               <div className="top_section_cont">
                 <div className="section_content">
