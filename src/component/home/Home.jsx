@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import "./home.css";
 import { Link, useLocation } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
@@ -11,6 +11,8 @@ import { getError } from "../../utils/Utils";
 import ReactTimeAgo from "react-time-ago";
 import { request } from "../../base_url/Base_URL";
 import ReactGA from "react-ga4";
+import AdSense from "react-adsense";
+import { Context } from "../../context/Context";
 
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
   debug: true,
@@ -46,7 +48,7 @@ function Home() {
     ReactGA.pageview(window.location.pathname + window.location.search);
   });
 
-  const [{ loading, error, posts, pages, countPosts }, dispatch] = useReducer(
+  const [{ loading, error, posts, pages }, dispatch] = useReducer(
     reducer,
     {
       loading: true,
@@ -54,6 +56,10 @@ function Home() {
       posts: [],
     }
   );
+
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { adverts } = state;
+  window.scroll(0, 0);
 
   //===========
   //POST FILTER
@@ -81,7 +87,6 @@ function Home() {
     };
     fetchData();
   }, [category, page, query]);
-  console.log(posts);
 
   const onPageView = (post) => {
     ReactGA.event({
@@ -163,6 +168,9 @@ function Home() {
           />
         </>
       )}
+      <div>
+        <AdSense.Google client="ca-pub-4626968536803317" slot="6639897134" />
+      </div>
     </div>
   );
 }

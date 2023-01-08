@@ -1,15 +1,15 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { Helmet } from "react-helmet";
 import Countdown from "react-countdown";
 import "./download.css";
 import parse from "html-react-parser";
-import download from "../../assets/download.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import LoadingBox from "../../utils/loading message/LoadingBox";
 import MessageBox from "../../utils/loading message/MessageBox";
 import { request } from "../../base_url/Base_URL";
 import ReactGA from "react-ga4";
+import { Context } from "../../context/Context";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -18,13 +18,6 @@ const reducer = (state, action) => {
     case "FETCH_SUCCESS":
       return { ...state, loading: false, post: action.payload };
     case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "FETCH_SETTINGS_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SETTINGS_SUCCESS":
-      return { ...state, loading: false, settings: action.payload };
-    case "FETCH_SETTINGS_FAIL":
       return { ...state, loading: false, error: action.payload };
 
     default:
@@ -48,10 +41,15 @@ function Download() {
   const params = useParams();
   const { id: postId } = params;
 
-  const [{ loading, error, post, settings }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, post }, dispatch] = useReducer(reducer, {
     loading: true,
     error: "",
   });
+
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings, adverts } = state;
+  window.scroll(0, 0);
+
   //=================
   //POST DOWNLOAD LINK
   //=================
@@ -75,24 +73,6 @@ function Download() {
     };
     fetchData();
   }, [postId]);
-  console.log(post);
-
-  //==============
-  //FETCH HANDLER
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_SETTINGS_REQUEST" });
-        const { data } = await axios.get(`${request}/api/settings`);
-        dispatch({ type: "FETCH_SETTINGS_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_SETTINGS_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
 
   //==========
   //COUNTDOWN
@@ -102,7 +82,9 @@ function Download() {
     <span>
       <div className="down_link_btn">
         <a href={post?.downloadLink}>
-          <img src={download} alt="download link" />
+          {settings?.map((s, index) => (
+            <img src={s.downloadBtn} alt="download link" key={index} />
+          ))}
         </a>
       </div>
     </span>

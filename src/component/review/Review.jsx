@@ -1,17 +1,17 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import "./review.css";
 import More from "../moregames/More";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
-import download from "../../assets/download.png";
 import LoadingBox from "../../utils/loading message/LoadingBox";
 import MessageBox from "../../utils/loading message/MessageBox";
 import Comment from "../comment/Comment";
 import { Helmet } from "react-helmet-async";
-import { Adsense } from "@ctrl/react-adsense";
+import AdSense from "react-adsense";
 import { request } from "../../base_url/Base_URL";
 import ReactGA from "react-ga4";
+import { Context } from "../../context/Context";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,13 +20,6 @@ const reducer = (state, action) => {
     case "FETCH_SUCCESS":
       return { ...state, loading: false, post: action.payload };
     case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "FETCH_BANNER_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_BANNER_SUCCESS":
-      return { ...state, loading: false, adverts: action.payload };
-    case "FETCH_BANNER_FAIL":
       return { ...state, loading: false, error: action.payload };
 
     case "FETCH_RELATED_REQUEST":
@@ -49,13 +42,14 @@ function Review() {
   const params = useParams();
   const { id: postId } = params;
 
-  const [{ loading, error, post, related, adverts }, dispatch] = useReducer(
-    reducer,
-    {
-      loading: true,
-      error: "",
-    }
-  );
+  const [{ loading, error, post, related }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: "",
+  });
+
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings, adverts } = state;
+  window.scroll(0, 0);
   //=================
   //POST FETCHING
   //=================
@@ -77,7 +71,6 @@ function Review() {
     };
     fetchData();
   }, [postId]);
-  console.log(post);
 
   //=================
   //RELATED POST FETCHING
@@ -97,23 +90,6 @@ function Review() {
     fetchData();
   }, [postId]);
 
-  //==============
-  //FETCH BANNER ADS
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_BANNER_REQUEST" });
-        const { data } = await axios.get(`${request}/api/ads`);
-        dispatch({ type: "FETCH_BANNER_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_BANNER_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div className="review">
       <Helmet>
@@ -132,20 +108,36 @@ function Review() {
             <div className="download_btn">
               <span>
                 {adverts?.map((ads, index) => (
-                  <a
-                    key={index}
-                    href={`${ads.ppcOne}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span>Click here to download</span>
-                  </a>
+                  <span>
+                    {ads.ppcOne === "" ? (
+                      ""
+                    ) : (
+                      <a
+                        key={index}
+                        href={`${ads.ppcOne}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>Click here to download</span>
+                      </a>
+                    )}
+                  </span>
                 ))}
                 <br />
                 <br />
-                <Link to={`/${postId}/download`}>
-                  <img src={download} alt="download button" />
-                </Link>
+                {post.downloadLink === "" ? (
+                  ""
+                ) : (
+                  <Link to={`/${postId}/download`}>
+                    {settings?.map((s, index) => (
+                      <img
+                        src={s.downloadBtn}
+                        alt="download button"
+                        key={index}
+                      />
+                    ))}
+                  </Link>
+                )}
               </span>
             </div>
             <div className="related_post">
@@ -172,12 +164,10 @@ function Review() {
           </div>
           <div className="review_more">
             <More />
-            <Adsense
+            <AdSense.Google
               client="ca-pub-4626968536803317"
               slot="6639897134"
             />
-
-            {/* <Adsense client="ca-pub-7640562161899788" slot="7259870550" /> */}
             <Comment postId={postId} post={post} />
           </div>
         </div>

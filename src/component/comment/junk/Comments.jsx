@@ -13,57 +13,8 @@ import CommentForm from "./CommentForm";
 import { Context } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, loading: false, posts: action.payload };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "CREATE_REQUEST":
-      return { ...state, loadingCreate: true };
-    case "CREATE_SUCCESS":
-      return { ...state, loadingCreate: false };
-    case "CREATE_FAIL":
-      return { ...state, loadingCreate: false };
-
-    case "UPLOAD_REQUEST":
-      return { ...state, loadingUpload: true, errorUpload: "" };
-    case "UPLOAD_SUCCESS":
-      return { ...state, loadingUpload: false, errorUpload: "" };
-    case "UPLOAD_FAIL":
-      return { ...state, loadingUpload: false, errorUpload: action.payload };
-
-    case "DELETE_REQUEST":
-      return { ...state, loadingDelete: true, successDelete: false };
-    case "DELETE_SUCCESS":
-      return { ...state, loadingDelete: false, successDelete: true };
-    case "DELETE_FAIL":
-      return {
-        ...state,
-        loadingDelete: false,
-        successDelete: false,
-      };
-    case "DELETE_RESET":
-      return {
-        ...state,
-        loadingDelete: false,
-        successDelete: false,
-      };
-
-    default:
-      return state;
-  }
-};
 function Comments(props) {
   const { currentUserId, postId } = props;
-
-  const [{ loading, error, categories }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: "",
-  });
 
   const navigate = useNavigate();
 
@@ -77,16 +28,6 @@ function Comments(props) {
     (backendComment) => backendComment.parentId === null
   );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/api/comments");
-      setBackendComments(data);
-      setDescription(data.description);
-    };
-    fetchData();
-  }, []);
-  console.log(backendComments);
-
   const getReplies = (commentId) => {
     return backendComments
       .filter((backendComment) => backendComment.parentId === commentId)
@@ -96,43 +37,9 @@ function Comments(props) {
       );
   };
 
-  //==============
-  //CREATE COMMENT
-  //==============
-  const createHandler = async () => {
-    if (!description) {
-      toast.error("post successfully", {
-        position: "bottom-center",
-      });
-    } else {
-      try {
-        dispatch({ type: "CREATE_REQUEST" });
-        const { data } = await axios.post(
-          `/api/comments/${postId}`,
-          {
-            postId,
-            description,
-        
-          },
-          {
-            headers: { Authorization: `Bearer ${userInfo.token}` },
-          }
-        );
-        dispatch({ type: "CREATE_SUCCESS", payload: data });
-        toast.success("Post created successfully", {
-          position: "bottom-center",
-        });
-        // navigate(`/posts`);
-      } catch (err) {
-        dispatch({ type: "CREATE_FAIL" });
-        toast.error("Fails", { position: "bottom-center" });
-      }
-    }
-  };
-
   const addComment = (text, parentId) => {
     console.log("addComment", text, parentId);
-    createHandler(text, parentId).then((comment) => {
+    createCommentApi(text, parentId).then((comment) => {
       setBackendComments([comment, ...backendComments]);
       setActiveComment(null);
     });

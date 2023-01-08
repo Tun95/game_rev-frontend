@@ -9,62 +9,27 @@ import DisclaimerScreen from "./screens/disclaimer/DisclaimerScreen";
 import PrivacyScreen from "./screens/privacy/PrivacyScreen";
 import GameErrorScreen from "./screens/error/GameErrorScreen";
 import RequestScreen from "./screens/request/RequestScreen";
-import { useEffect } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useReducer } from "react";
 import TimeAgo from "javascript-time-ago";
-import {request} from "./base_url/Base_URL"
-
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
+import { Context } from "./context/Context";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, loading: false, settings: action.payload };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    default:
-      return state;
-  }
-};
 function App() {
-  const [{ loading, error, settings }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: "",
-    settings: [],
-  });
-
-  //==============
-  //FETCH HANDLER
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`${request}/api/settings`);
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings } = state;
+  window.scroll(0, 0);
 
   return (
     <>
       <Router>
         <ToastContainer />
-        {settings.map((b, index) => (
+        {settings?.map((b, index) => (
           <div
             className="App s_flex"
             key={index}

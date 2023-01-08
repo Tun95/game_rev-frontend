@@ -1,72 +1,12 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useContext } from "react";
 import "./styles.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { request } from "../../base_url/Base_URL";
+import { Context } from "../../context/Context";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, loading: false, settings: action.payload };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "FETCH_CATEGORY_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_CATEGORY_SUCCESS":
-      return { ...state, loading: false, categories: action.payload };
-    case "FETCH_CATEGORY_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    default:
-      return state;
-  }
-};
 function NavMenu() {
-  const [{ loading, error, settings, categories }, dispatch] = useReducer(
-    reducer,
-    {
-      loading: true,
-      error: "",
-      settings: [],
-    }
-  );
-
-  //==============
-  //FETCH HANDLER
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`${request}/api/settings`);
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  //==============
-  //FETCH CATEGORY HANDLER
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_CATEGORY_REQUEST" });
-        const { data } = await axios.get(`${request}/api/category/alphatical`);
-        dispatch({ type: "FETCH_CATEGORY_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_CATEGORY_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings, categories } = state;
+  window.scroll(0, 0);
 
   const [isActive, setIsActive] = useState("");
 
@@ -75,7 +15,7 @@ function NavMenu() {
       <div className="nav_menu">
         <div className="nav_bar">
           <div className="logo">
-            {settings.map((s, index) => (
+            {settings?.map((s, index) => (
               <Link to="/" key={index}>
                 <img src={s.logo} alt="" />
               </Link>

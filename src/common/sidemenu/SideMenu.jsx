@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import "./styles.css";
 import copy from "../../assets/copy.png";
 import dmca from "../../assets/dmca.png";
@@ -7,30 +7,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { getError } from "../../utils/Utils";
 import { request } from "../../base_url/Base_URL";
+import { Context } from "../../context/Context";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, loading: false, settings: action.payload };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "FETCH_BANNER_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_BANNER_SUCCESS":
-      return { ...state, loading: false, adverts: action.payload };
-    case "FETCH_BANNER_FAIL":
-      return { ...state, loading: false, error: action.payload };
-
-    case "FETCH_TOP_REQUEST":
-      return { ...state, loadingTop: true };
-    case "FETCH_TOP_SUCCESS":
-      return { ...state, loadingTop: false, downloads: action.payload };
-    case "FETCH_TOP_FAIL":
-      return { ...state, loadingTop: false, error: action.payload };
-
     case "POST_REQUEST":
       return { ...state, loading: true };
     case "POST_SUCCESS":
@@ -44,63 +24,15 @@ const reducer = (state, action) => {
 };
 
 function SideMenu() {
-  const [{ loading, error, settings, adverts, downloads }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      error: "",
-      settings: [],
-    });
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: "",
+    settings: [],
+  });
 
-  //==============
-  //FETCH HANDLER
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`${request}/api/settings`);
-        dispatch({ type: "FETCH_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  //==============
-  //FETCH TOP DOWNLOADS
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_TOP_REQUEST" });
-        const { data } = await axios.get(`${request}/api/posts/top-downloads`);
-        dispatch({ type: "FETCH_TOP_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_TOP_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  //==============
-  //FETCH BANNER ADS
-  //==============
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_BANNER_REQUEST" });
-        const { data } = await axios.get(`${request}/api/ads`);
-        dispatch({ type: "FETCH_BANNER_SUCCESS", payload: data });
-      } catch (error) {
-        dispatch({ type: "FETCH_BANNER_FAIL" });
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { state, dispatch: ctxDispatch } = useContext(Context);
+  const { settings, adverts, downloads } = state;
+  window.scroll(0, 0);
 
   //===========
   //SEARCH BOX
