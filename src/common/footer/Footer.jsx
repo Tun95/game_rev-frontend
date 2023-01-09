@@ -30,7 +30,11 @@ function Footer() {
           </Link>
         </li>
       </ul>
-      <div className="blank_space"></div>
+      <div className="blank_space">
+        <small>
+          Developed By <span>Olatunji Akande</span>
+        </small>
+      </div>
     </div>
   );
 }

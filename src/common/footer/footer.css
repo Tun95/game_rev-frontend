@@ -18,7 +18,13 @@
   height: 20px;
   background-color: rgb(196, 196, 196);
 }
-
+.footer .blank_space small {
+  font-size: 12px;
+  margin-left: 20px;
+}
+.footer .blank_space small span {
+  color: rgb(124, 10, 10);
+}
 /*======= MEDIA QUERIES (MEDIUM DEVICES) =======*/
 @media screen and (max-width: 1024px) {
   .footer .footer_link {

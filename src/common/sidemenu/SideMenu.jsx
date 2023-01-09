@@ -170,16 +170,18 @@ function SideMenu() {
                   className="content_link"
                 >
                   {" "}
-                  <h3 className="content_fix">
-                    Game Corruption Errors &amp; Fix
-                  </h3>
+                  {settings.map((s, index) => (
+                    <h3 className="content_fix" key={index}>
+                      {s.sideFive}
+                    </h3>
+                  ))}
                 </Link>
               </span>
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
                 {settings.map((s, index) => (
-                  <h3 key={index}>{s.sideFive}</h3>
+                  <h3 key={index}>{s.sideOne}</h3>
                 ))}
               </div>
               <span className="content content_image">
