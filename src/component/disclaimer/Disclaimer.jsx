@@ -27,7 +27,7 @@ function Disclaimer() {
         </div>
       )}
       <div>
-        {adverts.map((a, index) => (
+        {adverts?.map((a, index) => (
           <span key={index}>
             <AdSense.Google client={a.clientId} slot={a.slot} />
           </span>
