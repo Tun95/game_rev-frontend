@@ -32,7 +32,7 @@ function SideMenu() {
 
   const { state, dispatch: ctxDispatch } = useContext(Context);
   const { settings, adverts, downloads } = state;
-  window.scroll(0, 0);
+  // window.scroll(0, 0);
 
   //===========
   //SEARCH BOX
