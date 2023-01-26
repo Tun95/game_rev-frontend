@@ -10,6 +10,12 @@
   color: blue;
 }
 
+.review .line_style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .review .download_btn img {
   width: 250px;
   cursor: pointer;

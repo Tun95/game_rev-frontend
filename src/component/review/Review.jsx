@@ -139,6 +139,11 @@ function Review() {
                   </Link>
                 )}
                 <br />
+                <div className="line_style">
+                  <span>----- </span>
+                  <strong> OR </strong>
+                  <span> -----</span>
+                </div>
                 {!post.buyLink ? (
                   ""
                 ) : (
