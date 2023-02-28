@@ -22,7 +22,7 @@
   font-size: 12px;
   margin-left: 20px;
 }
-.footer .blank_space small span {
+.footer .blank_space small a {
   color: rgb(124, 10, 10);
 }
 /*======= MEDIA QUERIES (MEDIUM DEVICES) =======*/

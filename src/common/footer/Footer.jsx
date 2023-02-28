@@ -32,7 +32,14 @@ function Footer() {
       </ul>
       <div className="blank_space">
         <small>
-          Developed By <span>Olatunji Akande</span>
+          Developed By{" "}
+          <a
+            href="https://my-portfolio-app-7oam.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Olatunji Akande
+          </a>
         </small>
       </div>
     </div>
