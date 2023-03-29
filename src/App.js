@@ -29,14 +29,14 @@ function App() {
     <>
       <Router>
         <ToastContainer />
-        {settings?.map((b, index) => (
+        {/* {settings?.map((b, index) => ( */}
           <div
             className="App s_flex"
-            key={index}
-            style={{
-              backgroundImage: `url(${b.background})`,
-              backgroundAttachment: "fixed",
-            }}
+            // key={index}
+            // style={{
+            //   backgroundImage: `url(${b.background})`,
+            //   backgroundAttachment: "fixed",
+            // }}
           >
             <Routes>
               <Route path="/" element={<HomeScreen />}></Route>
@@ -53,7 +53,7 @@ function App() {
               ></Route>
             </Routes>
           </div>
-        ))}
+        {/* ))} */}
       </Router>
     </>
   );
