@@ -91,7 +91,7 @@ function SideMenu() {
           <>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideOne}</h3>
                 ))}
               </div>
@@ -114,7 +114,7 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideTwo}</h3>
                 ))}
               </div>
@@ -135,12 +135,12 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideThree}</h3>
                 ))}
               </div>
               <span className="content content_image">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <div className="d_flex" key={index}>
                     <a
                       href={s.copyRight}
@@ -160,7 +160,7 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideFour}</h3>
                 ))}
               </div>
@@ -170,7 +170,7 @@ function SideMenu() {
                   className="content_link"
                 >
                   {" "}
-                  {settings.map((s, index) => (
+                  {settings?.map((s, index) => (
                     <h3 className="content_fix" key={index}>
                       {s.sideFive}
                     </h3>
@@ -180,7 +180,7 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideOne}</h3>
                 ))}
               </div>
@@ -237,12 +237,12 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideSix}</h3>
                 ))}
               </div>
               <span className="content">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <ul key={index}>
                     <li>
                       <a
@@ -277,7 +277,7 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideSeven}</h3>
                 ))}
               </div>
@@ -289,7 +289,7 @@ function SideMenu() {
             </div>
             <div className="content_box">
               <div className="content_header d_flex">
-                {settings.map((s, index) => (
+                {settings?.map((s, index) => (
                   <h3 key={index}>{s.sideEight}</h3>
                 ))}
               </div>

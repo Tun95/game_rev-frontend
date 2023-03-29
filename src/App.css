@@ -33,9 +33,13 @@ html {
 }
 body {
   font-family: sans-serif;
+}
+
+.App {
   background-image: url(../src/assets/banner.jpg);
   background-attachment: fixed;
 }
+
 .header-container {
   width: var(--container-width-lg);
   background: var(--color-bg);
