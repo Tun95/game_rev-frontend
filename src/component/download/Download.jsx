@@ -25,13 +25,13 @@ const reducer = (state, action) => {
   }
 };
 
-// ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
-//   debug: true,
-//   titleCase: false,
-//   gaOptions: {
-//     userId: 123,
-//   },
-// });
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_TRACKING, {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    userId: 123,
+  },
+});
 function Download() {
   //TRACKING
   useEffect(() => {
