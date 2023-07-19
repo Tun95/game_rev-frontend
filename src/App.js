@@ -25,35 +25,40 @@ function App() {
   const { settings } = state;
   window.scroll(0, 0);
 
+  const { background } =
+    (settings &&
+      settings
+        .map((s) => ({
+          background: s.background,
+        }))
+        .find(() => true)) ||
+    {};
   return (
     <>
       <Router>
         <ToastContainer />
-        {/* {settings?.map((b, index) => ( */}
-          <div
-            className="App s_flex"
-            // key={index}
-            // style={{
-            //   backgroundImage: `url(${b.background})`,
-            //   backgroundAttachment: "fixed",
-            // }}
-          >
-            <Routes>
-              <Route path="/" element={<HomeScreen />}></Route>
-              <Route path="/:id/details" element={<ReviewScreen />}></Route>
-              <Route path="/:id/download" element={<DownloadScreen />}></Route>
-              <Route path="/about" element={<AboutScreen />}></Route>
-              <Route path="/contact" element={<ContactScreen />}></Route>
-              <Route path="/request" element={<RequestScreen />}></Route>
-              <Route path="/disclaimer" element={<DisclaimerScreen />}></Route>
-              <Route path="/privacy-policy" element={<PrivacyScreen />}></Route>
-              <Route
-                path="/fix-general-installation-errors"
-                element={<GameErrorScreen />}
-              ></Route>
-            </Routes>
-          </div>
-        {/* ))} */}
+        <div
+          className="App s_flex"
+          style={{
+            backgroundImage: `url(${background})`,
+            backgroundAttachment: "fixed",
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<HomeScreen />}></Route>
+            <Route path="/:id/details" element={<ReviewScreen />}></Route>
+            <Route path="/:id/download" element={<DownloadScreen />}></Route>
+            <Route path="/about" element={<AboutScreen />}></Route>
+            <Route path="/contact" element={<ContactScreen />}></Route>
+            <Route path="/request" element={<RequestScreen />}></Route>
+            <Route path="/disclaimer" element={<DisclaimerScreen />}></Route>
+            <Route path="/privacy-policy" element={<PrivacyScreen />}></Route>
+            <Route
+              path="/fix-general-installation-errors"
+              element={<GameErrorScreen />}
+            ></Route>
+          </Routes>
+        </div>
       </Router>
     </>
   );
