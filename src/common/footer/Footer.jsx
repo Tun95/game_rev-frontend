@@ -34,7 +34,7 @@ function Footer() {
         <small>
           Developed By{" "}
           <a
-            href="https://my-portfolio-app-7oam.onrender.com/"
+            href="https://my-portfolio-nine-nu-28.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
           >
