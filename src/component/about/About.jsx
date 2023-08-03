@@ -7,6 +7,7 @@ import AdSense from "react-adsense";
 import { Context } from "../../context/Context";
 
 function About() {
+  //===========
   const { state, dispatch: ctxDispatch } = useContext(Context);
   const { loading, error, settings, adverts } = state;
   window.scroll(0, 0);
